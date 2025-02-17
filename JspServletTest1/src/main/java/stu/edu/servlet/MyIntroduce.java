@@ -12,7 +12,7 @@ import jakarta.servlet.ServletResponse;
 public class MyIntroduce implements Servlet{
 
 	
-	ServletConfig config;
+	ServletConfig config; 
 
 	@Override
 	public void destroy() {

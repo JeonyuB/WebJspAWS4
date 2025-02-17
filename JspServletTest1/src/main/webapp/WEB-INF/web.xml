@@ -22,7 +22,7 @@
 	<servlet-mapping>
 		<servlet-name>MyIntroduce</servlet-name>
 		<url-pattern>/MyIntroduce</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> 
 
   
   <welcome-file-list>

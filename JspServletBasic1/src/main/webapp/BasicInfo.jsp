@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body> 
 
 	<h1>BasicInfo.jsp</h1>
 	<form action="./basicInfo" method="get">
