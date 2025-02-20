@@ -116,6 +116,7 @@ public class MemberListServlet extends HttpServlet{
 	        		 req.getRequestDispatcher("/member/MemberListView.jsp");
 	         
 	         dispatcher.include(req,res);
+	         
 //	            out.println(
 //	               rs.getInt("MNO") + "," +
 //	               "<a href='./update?mNo=" + 
@@ -133,7 +134,11 @@ public class MemberListServlet extends HttpServlet{
 	         
 //	         out.println("</body></html>");
 	      }catch (Exception e) {
-	    	  throw new ServletException(e);
+	    	//  throw new ServletException(e);
+	    	  req.setAttribute("error", e);
+	    	  RequestDispatcher dispatcher=
+	    			  req.getRequestDispatcher("/Error.jsp");
+	    	  dispatcher.forward(req, res);
 	      }finally {
 	    	  if(rs!=null) {
 	    		  try {
@@ -143,6 +148,7 @@ public class MemberListServlet extends HttpServlet{
 //	 	          TODO Auto-generated catch block
 	 	         e.printStackTrace();
 	      }
+	    		  
 //	      } catch (ClassNotFoundException e) {
 //	         // TODO Auto-generated catch block
 //	       //  e.printStackTrace();

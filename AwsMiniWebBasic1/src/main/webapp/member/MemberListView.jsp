@@ -11,6 +11,9 @@
 	<title>회원목록</title>
 </head>
 <body>
+
+	<jsp:include page="/Header.jsp"/>
+
 	<h1>회원목록</h1>
 	<p>
 		<a href="./member/add">신규회원</a>
@@ -25,11 +28,15 @@
 	<a href="./update?mNo=<%=memberDto.getNo()%>"><%=memberDto.getName()%></a>,
 	<%=memberDto.getEmail()%>,
 	<%=memberDto.getCreatedDate() %>,
-	<a href="./delete?<%=memberDto.getNo()%>">삭제</a>,
+	<a href="./delete?mNo=<%=memberDto.getNo()%>">삭제</a>,
 	<br>
 	<%
 		}
+		
 	%>
+	
+	
+	<jsp:include page="/Tail.jsp"/>
 <!-- 	1, <a href="./update?mNo=1">홍길동</a>, ㄴ디11, ㄴㅇㅁ
 	
 	<a href="./delete?mNo=1">[삭제]</a> -->
