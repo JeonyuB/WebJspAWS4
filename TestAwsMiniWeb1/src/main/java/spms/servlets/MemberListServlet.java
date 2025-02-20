@@ -12,7 +12,9 @@ import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebServlet;
 
+@WebServlet("/member/list")
 public class MemberListServlet extends GenericServlet {
 
    @Override
@@ -55,16 +57,19 @@ public class MemberListServlet extends GenericServlet {
          out.println("<a href=\"./add\">신규회원</a>");
          out.println("</a>");
          out.println("</p>");
-         
+         int rownum =1;
          //데이베이스 의존해서 모든 화면 만들음
          while (rs.next() == true) {
         	 out.println(
         			rs.getInt("MNO")+ ", "+
-        			rs.getString("MNAME")+ ", "+
-        			rs.getString("PHONE_NUM")+ ", "+
+   //     			rownum+ ", "+
+        			"<a href ='./update?mNo="+
+        			rs.getInt("MNO")+"'>"+
+        			rs.getString("MNAME")+ "</a>, "+
         			rs.getString("EMAIL")+ ", "+
         			rs.getString("CRE_DATE")+ "<br>"
         	);
+        //	 rownum++;
          }
          out.println("</body></html>");
          

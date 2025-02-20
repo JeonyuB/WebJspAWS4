@@ -15,5 +15,7 @@
 		
 	</p>
 	
+	<a herf ='./update?mNo='></a>
+	
 </body>
 </html>

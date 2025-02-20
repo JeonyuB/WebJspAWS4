@@ -8,13 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@WebServlet("/add")
+@SuppressWarnings("serial")
 public class MemberAddServlet extends HttpServlet{
 
-   @Override
+
+@Override
    protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 		   throws ServletException, IOException {
       // TODO Auto-generated method stub
@@ -22,7 +26,7 @@ public class MemberAddServlet extends HttpServlet{
       System.out.println("doGet을 탄다");
       
       res.setContentType("text/html");
-      res.setCharacterEncoding("UTF-8");
+      
       
       PrintWriter out = res.getWriter();
       
@@ -50,7 +54,7 @@ public class MemberAddServlet extends HttpServlet{
 			throws ServletException, IOException {
 	   
 	   System.out.println("doPost 실행");
-		// TODO Auto-generated method stub
+
 		Connection conn =null;
 		PreparedStatement pstmt = null;
 		
@@ -81,6 +85,7 @@ public class MemberAddServlet extends HttpServlet{
 	         
 	         res.setContentType("text/html");
 	         res.setCharacterEncoding("UTF-8");
+	         
 	         
 	         PrintWriter out = res.getWriter();
 	         

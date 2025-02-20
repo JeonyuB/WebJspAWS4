@@ -59,6 +59,8 @@ public class MemberAddServlet extends HttpServlet{
 	      String user = "edu";
 	      String password = "edu12";
 	      
+	      req.setCharacterEncoding("UTF-8");
+	      
 	      String emailStr = req.getParameter("email");
 	      String pwdStr = req.getParameter("password");
 	      String nameStr = req.getParameter("mname");
@@ -82,6 +84,8 @@ public class MemberAddServlet extends HttpServlet{
 	         
 	         pstmt.executeUpdate();
 	         
+	         res.sendRedirect("./list");//아래 주석이랑 같음
+	         
 	         res.setContentType("text/html");
 	         res.setCharacterEncoding("UTF-8");
 	         
@@ -89,8 +93,9 @@ public class MemberAddServlet extends HttpServlet{
 	         
 	         String htmlStr="";
 	         
-	         htmlStr +="<!DOCTYPE html><html><head><meta charset=\"UTF-8\">"
-	           		+ "	<title>회원등록결과</title></head>"
+	         htmlStr +="<!DOCTYPE html><html><head>"
+	           		+ "	<title>회원등록결과</title>"
+	        		+"<meta http-equiv='Refresh' content='1;url=list'></head>"
 	           		+ "<body><p>등록완료입니다</p>"
 	           		+"<button type='button' onclick=\"location.href='./list'\">처음으로 돌아가기</button>"
 	           		+"</body></html>";
