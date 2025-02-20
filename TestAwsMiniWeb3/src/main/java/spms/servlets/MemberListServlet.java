@@ -68,21 +68,7 @@ public class MemberListServlet extends HttpServlet{
 	         pstmt = conn.prepareStatement(sql);
 //	         4DB에 sql문 보내기
 	         rs = pstmt.executeQuery();
-	         
-//	         res.setContentType("text/html");
-//	         res.setCharacterEncoding("UTF-8");
-	         
-	         
 
-//	         String htmlStr = "";
-//	         
-//	         htmlStr += "<p>";
-//	         htmlStr += "<a href='./add'>신규 회원";
-//	         htmlStr += "</a>";
-//	         htmlStr += "</p>";
-//	         
-//	         out.println("<!DOCTYPE html><html>");
-//	         out.println("<head><meta charset=\"UTF-8\">");
 	         
 	         ArrayList<MemberDto> memberList =new ArrayList<>();
 	         
@@ -90,13 +76,7 @@ public class MemberListServlet extends HttpServlet{
 	         String mname="";
 	         String email ="";
 	         Date creDate = null;
-	         
-//	         out.println("<title>회원목록</title></head>");
-//	         out.println("<body>");
-//	         
-//	         out.println("<h1>회원목록</h1>");
-//	         out.println(htmlStr);
-	         
+	          
 //	         5.데이터 활용
 	         while (rs.next() == true) {
 	        	 
@@ -117,58 +97,33 @@ public class MemberListServlet extends HttpServlet{
 	         
 	         dispatcher.include(req,res);
 	         
-//	            out.println(
-//	               rs.getInt("MNO") + "," +
-//	               "<a href='./update?mNo=" + 
-//	                     rs.getInt("MNO") + 
-//	               "'>" +
-//	               rs.getString("MNAME") + "</a>," +
-//	               rs.getString("EMAIL") + "," + 
-//	               rs.getDate("CRE_DATE") + 
-//	               "<a href='./delete?mNo=" + 
-//	                  rs.getInt("MNO") + 
-//	               "'>[삭제]</a>" + 
-//	               "<br>"
-//	            );
-	         
-	         
-//	         out.println("</body></html>");
+	         throw new ServletException("hi?");
 	      }catch (Exception e) {
-	    	//  throw new ServletException(e);
-	    	  System.out.println("회원목록에서 예외발생");
-	    	  e.printStackTrace();	    	  
-	    	  
+	    	//  throw new ServletException(e);//에러만들기
+
 	    	  req.setAttribute("error", e);
-	    	  RequestDispatcher dispatcher=
-	    			  req.getRequestDispatcher("/Error.jsp");
+	    	  req.setAttribute("message", "가나");
+	    	  
+	    	  RequestDispatcher dispatcher= req.getRequestDispatcher("/Error.jsp");
+	    	  
+	    	  
 	    	  dispatcher.forward(req, res);
+  	  
+	    	  
 	      }finally {
 	    	  if(rs!=null) {
 	    		  try {
 	    			  rs.close();
 	    			  System.out.println("ResultSet 종료");
+	    			  
+	    			  
+	    			  
 	    	  }catch (SQLException e) {
 //	 	          TODO Auto-generated catch block
 	 	         e.printStackTrace();
 	      }
 	    		  
-//	      } catch (ClassNotFoundException e) {
-//	         // TODO Auto-generated catch block
-//	       //  e.printStackTrace();
-//	      } catch (SQLException e) {
-//	         // TODO Auto-generated catch block
-//	         e.printStackTrace();
-//	      }finally {
-////	      6jdbc 객체 메모리 회수   
-//	         if(rs != null) {
-//	            try {
-//	               rs.close();
-//	            } catch (SQLException e) {
-//	               // TODO: handle exception
-//	               e.printStackTrace();
-//	            }
-//	         }
-//	         
+
 	         if(pstmt != null) {
 	            try {
 	               pstmt.close();
