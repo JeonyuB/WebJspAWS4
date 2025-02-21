@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/add")
+@WebServlet("/member/add")
 @SuppressWarnings("serial")
 public class MemberAddServlet extends HttpServlet{
 
@@ -92,6 +92,7 @@ public class MemberAddServlet extends HttpServlet{
 	         String htmlStr="";
 	         
 	         htmlStr +="<!DOCTYPE html><html><head><meta charset=\"UTF-8\">"
+	        		 +"<meta http-equiv='Refresh' content='1;url=list'>"//등록완료페이지 끝나고 member/list로 이동하게끔 하는 구문 
 	           		+ "	<title>회원등록결과</title></head>"
 	           		+ "<body><p>등록완료입니다</p>"
 	           		+"</body></html>";

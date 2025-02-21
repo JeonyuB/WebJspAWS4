@@ -1,7 +1,7 @@
 package spms.dto;
 
 import java.util.Date;
-
+//데이터베이스에서의 테이블(텅 비어있음 테이블틀만 준비해줌)
 public class MemberDto {
 	private int no;
 	private String name;
@@ -13,7 +13,7 @@ public class MemberDto {
 	
 	
 	
-	public MemberDto(int no) {
+	public MemberDto() {
 		super();
 	}
 

@@ -16,8 +16,9 @@
 
 	<h1>회원목록</h1>
 	<p>
-		<a href="./member/add">신규회원</a>
+		<a href="./add">신규회원</a>
 	</p>
+	<!-- request: 서로(자바파일 기타등등)가 공유가 된다는 증거 -->
 	<%
 		ArrayList<MemberDto> memberList =
 			(ArrayList<MemberDto>)request.getAttribute("memberList");
