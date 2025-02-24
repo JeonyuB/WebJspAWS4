@@ -76,13 +76,13 @@ public class MemberDeleteServlet extends HttpServlet {
            }
         }
         
-//        if(conn != null) {
-//           try {
-//              conn.close();
-//           } catch (SQLException e) {
-//              e.printStackTrace();
-//           }
-//        }
+        if(conn != null) {
+           try {
+              conn.close();
+           } catch (SQLException e) {
+              e.printStackTrace();
+           }
+        }
      }
    }
 

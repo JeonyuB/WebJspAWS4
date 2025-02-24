@@ -66,8 +66,7 @@ public class AppInitServlet extends HttpServlet {
 		try {
 			//conn이라는 key의 value를 가져옴
 			Connection conn = (Connection) sc.getAttribute("conn");
-			//메인 list 등에 이미 존재하는 경우, 또다시 db를 연결해제하면 오류가 나므로 
-			//다른 코드에 존재하는 아래 내용은 삭제를 해야한다.
+
 			if (conn != null) {
 				//DB로 출력된?데이터 사라짐.
 				conn.close();
