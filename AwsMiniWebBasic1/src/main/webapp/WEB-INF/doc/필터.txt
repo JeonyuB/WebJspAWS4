@@ -189,3 +189,34 @@ jsp에서 자바 빈 객체를 생성하거나 참조하기 위한 액션
 추상 클래스나 인터페이스는 사용할 수 없다
 .type: 특정 타입의 클래스를 명시할 때 사용한다. 추상 클래스나 인터페이스, 일반 클래스가 될
 수 있으며 class 속성의 클래스에서 상속 혹은 구현이 이루어져야 한다
+==================================================================
+
+*JSTL(JSP Standard Tag Library)// 남이 만들어둔 무료 api. 
+자바 코드를 사용하지 않고 HTML 형식을 유지하면서 
+조건문, 반복문, 간단한 연산과 유용한 기능을 사용할 수 있도록 
+만들어진 표준 커스텀 태그 라이브러리다
+
+규격상 JSTL은 core, xml, 데이터베이스, 함수 등으로 구성되어 있으나
+뷰 중심의 JSP 구현인 core 정도만 사용된다
+
+
+*EL 표기법?
+Expression Language는 콤마와 대괄호[]를 사용하여 
+자바 빈의 프로퍼티나 맵, 리스트, 배열의 값을 보다 쉽게 
+꺼내게 해주는 기술이다
+jsp에서는 주로 보관소에 들어 있는 값을 꺼낼 때 사용한다
+EL을 사용하면 액션 태그를 사용하는 것 보다 더 간단히 보관소에 있는
+객체에 접근하여 값을 꺼내거나 메서드를 호출할 수 있다
+
+EL표기법
+${memberDto.no} 또는 ${memberDto["no"]}
+객체명.프로퍼티            객체명[프로퍼티]
+
+보관소를 명시하지 않으면
+JspContext -> ServletRequest -> HttpSession -> ServletContext -> null
+순으로 찾다가 없으면 null을 반환한다
+
+명시하는 방법
+pageScope, requestScope, sessionScope, applicationScope
+
+${requestScope.memberDto.no}

@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,6 +35,7 @@ public class MemberDeleteServlet extends HttpServlet {
       String user = sc.getInitParameter("user");
       String password = sc.getInitParameter("password");
       
+      //화면에 정보가 있는가 없는가?
       int mNo = Integer.parseInt(req.getParameter("mNo"));
       
       String sql = "";
@@ -57,15 +59,20 @@ public class MemberDeleteServlet extends HttpServlet {
 
         pstmt.executeUpdate();
         
+        //모든 코드를 하고 화면에 출력한다-> ./list에 send함
         res.sendRedirect("./list");
         
 
-     } catch (ClassNotFoundException e) {
+     } catch (Exception e) {
         // TODO: handle exception
-        e.printStackTrace();
-     } catch (SQLException e) {
-        // TODO: handle exception
-        e.printStackTrace();
+         e.printStackTrace();
+         
+         req.setAttribute("error", e);
+    	RequestDispatcher rd = req.getRequestDispatcher("/Error.jsp");
+			
+  		rd.forward(req, res);
+
+        
      } finally {
         
         if(pstmt != null) {

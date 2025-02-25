@@ -1,5 +1,5 @@
-<%@page import="spms.dto.MemberDto"%>
-<%@page import="java.util.ArrayList"%>
+
+<%@page import="jakarta.servlet.descriptor.TaglibDescriptor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<title>회원목록</title>
 </head>
 <body>
@@ -19,23 +19,16 @@
 		<a href="./add">신규회원</a>
 	</p>
 <!-- request: 서로(자바파일 기타등등)가 공유가 된다는 증거  -->
-	<jsp:useBean id="memberList"
-		scope="request"
-		class="java.util.ArrayList"
-		type="java.util.ArrayList<MemberDto>"
-	/>
-	<%
-		for(MemberDto memberDto: memberList){
-	%>
-	<%=memberDto.getNo()%>,
-	<a href="./update?mNo=<%=memberDto.getNo()%>"><%=memberDto.getName()%></a>,
-	<%=memberDto.getEmail()%>,
-	<%=memberDto.getCreatedDate() %>,
-	<a href="./delete?mNo=<%=memberDto.getNo()%>">[삭제]</a>
-	<br>
-	<%
-		}
-	%>
+	
+	<c:forEach var="memberDto" items="${memberList}"> 
+		${memberDto.getNo()},
+		<a href="./update?mNo=${memberDto.getNo() }">${memberDto.getName() }</a>,
+		${memberDto.getEmail() },
+		${memberDto.getCreatedDate() }
+		<a href="./delete?mNo=${memberDto.getNo() }">[삭제]</a>
+		<br>
+	</c:forEach>
+
 	
 	
 	<jsp:include page="/Tail.jsp"/>
