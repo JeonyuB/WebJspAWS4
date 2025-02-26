@@ -12,11 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import spms.dao.MemberDao;
-import spms.dto.MemberDto;
 
 @WebServlet("/member/add")
-@SuppressWarnings("serial")
 public class MemberAddServlet extends HttpServlet{
 
 	@Override
@@ -34,38 +31,28 @@ public class MemberAddServlet extends HttpServlet{
 		System.out.println("doPost 수행함");
 		
 		Connection conn = null;
-
+		PreparedStatement pstmt = null;
 		
 		String emailStr = req.getParameter("email");
 		String pwdStr = req.getParameter("password");
-		String nameStr = req.getParameter("name");
-		
-		MemberDto memberDto = new MemberDto();
-		
-		memberDto.setEmail(emailStr);
-		memberDto.setPassword(pwdStr);
-		memberDto.setName(nameStr);
+		String nameStr = req.getParameter("mname");
 		
 		try {
-			//this는 ServletContext
 			ServletContext sc = this.getServletContext();
 			
-			//또 new해서 객체 생성하지 않게 (appinitservlet에서 만든)conn재활용.
 			conn = (Connection)sc.getAttribute("conn");
 			
-			MemberDao memberDao = new MemberDao();
-			memberDao.setConnection(conn);//윗줄에서 만든 conn을 여러곳(memberDao)에서 재사용하게 연결
+			String sql = "INSERT INTO MEMBERS"
+					+ "(MNO, EMAIL, PWD, MNAME, CRE_DATE, MOD_DATE)"
+					+ "VALUES(MEMBERS_MNO_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, SYSDATE)";
 			
-			int result = 0;
-			//0이면 등록 실패, 0이외에는 성공
-			result = memberDao.memberInsert(memberDto);
+			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println("??????: "+result);
-			if(result == 0) {
-				
-				System.out.println("회원가입 실패");
-				
-			}
+			pstmt.setString(1, emailStr);
+			pstmt.setString(2, pwdStr);
+			pstmt.setString(3, nameStr);
+			
+			pstmt.executeUpdate();
 			
 			res.sendRedirect("./list");
 			
@@ -76,7 +63,17 @@ public class MemberAddServlet extends HttpServlet{
 			req.setAttribute("error", e);
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/Error.jsp");
 			dispatcher.forward(req, res);
-		}
+		}finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+			
+		} // finally 종료
 		
 	}
 	

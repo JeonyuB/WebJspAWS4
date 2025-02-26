@@ -11,7 +11,7 @@
 
 <body>
 	<jsp:include page="/Header.jsp" />
-	<!-- summit 시 MemberAddServlet의 dopost로 이동 -->
+	
 	<h1>회원등록</h1>
 	<form action='./add' method='post'>
 		이름: <input type='text' name='name'><br>
