@@ -12,14 +12,26 @@
 </script>
 
 <style type="text/css">
-
+	#container{
+	
+		margin: auto;
+		width: 1200px;
+		height: 1200px;
+		background-color: lightgray;
+		
+	}
 </style>
 
 </head>
 
 <body>
 	<jsp:include page="./Category_Main.jsp"/>
+	
+	<div id="container"></div>
 
+	<jsp:include page="./Move_MrgPage.jsp"/>
+	<jsp:include page="./Footer.jsp"/>
+	
 
 </body>
 </html>
